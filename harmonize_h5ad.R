@@ -1,7 +1,6 @@
 #!/usr/bin/env Rscript
 library(rhdf5)
 library(harmony)
-library(data.table)
 require(docopt)
 
 'Usage:
@@ -20,6 +19,10 @@ h5_file <- opts$h5
 # Get the observations from the h5
 obs <- h5read(h5_file, "obs")
 
+if(!(opts$var %in% colnames(obs))) {
+	stop("variable to correct on not in obs")
+}
+
 # Get the PCA and transpose it
 pca <- t(h5read(h5_file, "obsm/X_pca"))
 
@@ -34,4 +37,4 @@ do_pca = FALSE,
 verbose = FALSE
 )
 
-write.csv(harmonized, file = opts$output)
+write.csv(t(harmonized), file = opts$output)
