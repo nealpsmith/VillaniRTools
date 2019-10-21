@@ -1,7 +1,11 @@
 #!/usr/bin/env Rscript
 # Make sure dependencies are installed
+# Avoid the gtar error 
+Sys.setenv(TAR = "/bin/tar")
+
 packages <- installed.packages()[,"Package"]
 if (!"harmony" %in% packages){
+	#This did not work for me (Tariq), I had to install it through conda install r-devtools
 	if (!"devtools" %in% packages) {
 		install.packages(devtools)
 	}
