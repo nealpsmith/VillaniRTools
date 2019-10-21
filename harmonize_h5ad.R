@@ -1,4 +1,25 @@
 #!/usr/bin/env Rscript
+# Make sure dependencies are installed
+packages <- installed.packages()[,"Package"]
+if (!"harmony" %in% packages){
+	if (!"devtools" %in% packages) {
+		install.packages(devtools)
+	}
+	devtools::install_github("immunogenomics/harmony")
+}
+
+if (!"rhdf5" %in% packages) {
+	if (!"BiocManager" %in% packages) {
+		install.packages("BiocManager")
+	}
+	BiocManager::install("rhdf5")
+
+}
+
+if (! "docopt" %in% packages) {
+	install.packages("docopt")
+}
+
 library(rhdf5)
 library(harmony)
 require(docopt)
