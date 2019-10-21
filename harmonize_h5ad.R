@@ -1,29 +1,4 @@
 #!/usr/bin/env Rscript
-# Make sure dependencies are installed
-# Avoid the gtar error 
-Sys.setenv(TAR = "/bin/tar")
-
-packages <- installed.packages()[,"Package"]
-if (!"harmony" %in% packages){
-	#This did not work for me (Tariq), I had to install it through conda install r-devtools
-	if (!"devtools" %in% packages) {
-		install.packages(devtools)
-	}
-	devtools::install_github("immunogenomics/harmony")
-}
-
-if (!"rhdf5" %in% packages) {
-	if (!"BiocManager" %in% packages) {
-		install.packages("BiocManager")
-	}
-	BiocManager::install("rhdf5")
-
-}
-
-if (! "docopt" %in% packages) {
-	install.packages("docopt")
-}
-
 library(rhdf5)
 library(harmony)
 require(docopt)
