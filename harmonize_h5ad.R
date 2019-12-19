@@ -1,4 +1,3 @@
-#!/usr/bin/env Rscript
 library(rhdf5)
 library(harmony)
 require(docopt)
